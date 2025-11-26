@@ -10,7 +10,7 @@ module "oidc_provider" {
 
 module "iam_roles" {
 
-    source = "github.com/Nerlooo/devops_base//td5/scripts/tofu/modules/github-aws-oidc"
+    source = "github.com/Nerlooo/devops_base//td5/scripts/tofu/modules/iam_roles"
 
     name = "lambda-sample"
     oidc_provider_arn = module.oidc_provider.oidc_provider_arn
