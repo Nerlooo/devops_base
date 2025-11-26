@@ -4,7 +4,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  res.send('Ceci est une erreur volontaire');
+  res.send('DevOps Lab!');
 });
 
 app.get('/name/:name', (req, res) => {
