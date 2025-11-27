@@ -24,6 +24,6 @@ module "iam_roles" {
     github_repo = "Nerlooo/devops_base" # ex: "bta-devops/cloud-native-devops-kubernetes-2e"
 
     lambda_base_name = "lambda-sample"
-    tofu_state_bucket = "YOUR_S3_BUCKET_NAME" # Replace with your bucket name
-    tofu_state_dynamodb_table = "YOUR_DYNAMODB_TABLE_NAME" # Replace with your table name
+    tofu_state_bucket = "shoumanbucket" # Replace with your bucket name
+    tofu_state_dynamodb_table = "shoumanbucket" # Replace with your table name
 }
