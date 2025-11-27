@@ -1,6 +1,6 @@
 name: Tofu Plan
 
-on:
+on: 
   pull_request:
     branches: ["main"]
     paths: ["td5/scripts/tofu/live/lambda-sample/**"]
