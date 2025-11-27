@@ -22,4 +22,4 @@ run "validate" {
     condition     = data.http.test_endpoint.response_body == "DevOps Labs!"
     error_message = "Unexpected body: ${data.http.test_endpoint.response_body}"
   }
-}
+} 
