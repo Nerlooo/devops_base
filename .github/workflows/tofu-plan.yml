@@ -9,17 +9,21 @@ jobs:
   plan:
     name: "Tofu Plan"
     runs-on: ubuntu-latest
+    
+    # 👇 LE BLOC CRITIQUE EST ICI 👇
     permissions:
       contents: read        # Pour cloner le code
-      id-token: write       # Pour AWS OIDC
-      pull-requests: write  # Pour écrire sur la PR
-      issues: write         # OBLIGATOIRE pour le bot de commentaire
-    
+      id-token: write       # Pour se connecter à AWS (Règle ton erreur actuelle)
+      pull-requests: write  # Pour écrire le commentaire sur la PR
+      issues: write         # Pour que le bot ait le droit de poster (Règle l'erreur d'avant)
+    # 👆 VERIFIE QUE CE BLOC EST BIEN ALIGNÉ SOUS "plan:" 👆
+
     steps:
       - uses: actions/checkout@v2
 
       - uses: aws-actions/configure-aws-credentials@v3
         with:
+          # Assure-toi que ce rôle a bien l'étoile * dans sa Trust Policy sur AWS
           role-to-assume: arn:aws:iam::750261420290:role/lambda-sample-plan
           role-session-name: plan-${{ github.run_number }}-${{ github.actor }}
           aws-region: us-east-2
