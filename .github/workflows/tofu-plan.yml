@@ -1,13 +1,12 @@
 name: Tofu Plan
 
 on:
-  push:                 # <--- AJOUTE CA
-    branches: ["main", "deployment-pipeline-test"] # Ajoute ta branche ici
+  # 👇 LE CHANGEMENT EST ICI : "**" veut dire "Toutes les branches"
+  push:
+    branches: ["**"]
   pull_request:
     branches: ["main"]
-    paths: ["td5/scripts/tofu/live/lambda-sample/**"]
 
-# 👇 ON LES MET ICI, TOUT EN HAUT (Niveau Global) 👇
 permissions:
   id-token: write
   contents: read
@@ -18,16 +17,15 @@ jobs:
   plan:
     name: "Tofu Plan"
     runs-on: ubuntu-latest
-    # Plus besoin de permissions ici, celles du haut s'appliquent !
     
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: aws-actions/configure-aws-credentials@v3
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
         with:
-          # Vérifie bien que c'est le bon rôle (celui avec l'étoile *)
           role-to-assume: arn:aws:iam::750261420290:role/lambda-sample-plan
-          role-session-name: plan-${{ github.run_number }}-${{ github.actor }}
+          role-session-name: plan-session
           aws-region: us-east-2
 
       - uses: opentofu/setup-opentofu@v1
